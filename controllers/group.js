@@ -14,3 +14,15 @@ exports.action = (req, res) => {
         res.redirect("/");
     });
 }
+exports.update = (req, res) => {
+
+    employee.findOneAndUpdate({_id: req.params.id}, {name: req.body.name}).then(data => {
+        res.redirect('/');
+    });
+}
+
+exports.remove = (req,res) => {
+    employee.findOneAndRemove({_id: req.params.id}).then(data => {
+        res.redirect("/");
+    });
+}
