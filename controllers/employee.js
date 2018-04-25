@@ -6,9 +6,11 @@ exports.index = (req, res) => {
     })
 }
 
-exports.action = (req, res) => {
+exports.add = (req, res) => {
     var employee = new addEmployee;
+
     employee.name = req.body.name;
+    employee.email = req.body.email;
     employee.password = req.body.password;
 
     employee.save().then(data => {

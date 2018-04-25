@@ -6,7 +6,7 @@ exports.index = (req, res) => {
     })
 }
 
-exports.action = (req, res) => {
+exports.add = (req, res) => {
     var group = new addGroup;
     group.name = req.body.name;;
 
@@ -16,13 +16,13 @@ exports.action = (req, res) => {
 }
 exports.update = (req, res) => {
 
-    employee.findOneAndUpdate({_id: req.params.id}, {name: req.body.name}).then(data => {
+    group.findOneAndUpdate({_id: req.params.id}, {name: req.body.name}).then(data => {
         res.redirect('/');
     });
 }
 
 exports.remove = (req,res) => {
-    employee.findOneAndRemove({_id: req.params.id}).then(data => {
+    group.findOneAndRemove({_id: req.params.id}).then(data => {
         res.redirect("/");
     });
 }
