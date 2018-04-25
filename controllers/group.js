@@ -1,4 +1,4 @@
-var addGroup = require('../models/group').group;
+var addGroup = require('../models/group').Group;
 
 exports.index = (req, res) => {
     Group.find().then(data => {

@@ -1,4 +1,4 @@
-var addManager = require('../models/manager').manager;
+var addManager = require('../models/manager').Manager;
 
 
 exports.index = (req, res) => {
