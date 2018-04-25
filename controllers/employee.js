@@ -1,4 +1,4 @@
-var addEmployee = require('../models/employee').Employee;
+var employee = require('../models/employee').Employee;
 
 exports.index = (req, res) => {
     employee.find().then(data => {
@@ -7,7 +7,7 @@ exports.index = (req, res) => {
 }
 
 exports.action = (req, res) => {
-    var employee = new addEmployee;
+    var employee = new employee;
     employee.name = req.body.name;
     employee.password = req.body.password;
 

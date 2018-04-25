@@ -1,4 +1,4 @@
-var addManager = require('../models/manager').Manager;
+var manager = require('../models/manager').Manager;
 
 
 exports.index = (req, res) => {
@@ -8,7 +8,7 @@ exports.index = (req, res) => {
 }
 
 exports.action = (req, res) => {
-    var manager = new addManager;
+    var manager = new manager;
     manager.name = req.body.name;
     manager.password = req.body.password;
 
