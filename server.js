@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var mongoose = require('mongoose');
-var routes = require('./routes.js');
+var routes = require('./route.js');
 
 mongoose.connect('mongodb://localhost/beetomood');
 
