@@ -6,13 +6,8 @@ exports.index = (req, res) => {
     })
 }
 
-<<<<<<< HEAD
-exports.add = (req, res) => {
-    var group = new addGroup;
-=======
 exports.action = (req, res) => {
     var group = new group;
->>>>>>> 81234c719ce46f9c80bd513460a3a9a5bb9a8a95
     group.name = req.body.name;;
 
     group.save().then(data => {
