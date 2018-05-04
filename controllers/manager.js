@@ -7,13 +7,8 @@ exports.index = (req, res) => {
     })
 }
 
-<<<<<<< HEAD
-exports.add = (req, res) => {
-    var manager = new addManager;
-=======
 exports.action = (req, res) => {
     var manager = new manager;
->>>>>>> 81234c719ce46f9c80bd513460a3a9a5bb9a8a95
     manager.name = req.body.name;
     manager.password = req.body.password;
 
