@@ -7,13 +7,22 @@ exports.index = (req, res) => {
 }
 
 exports.create = (req, res) => {
+    var newGroup = new Group;
+    newGroup.name = req.body.name;
 
+    newGroup.save().then(data => {
+        res.json(data);
+    });
 }
 
-exports.put = (req, res) => {
-    
+exports.update = (req, res) => {
+    Group.findOneAndUpdate({_id: req.params.id}, {name: req.body.name}).then(data => {
+        res.json(data);
+    });
 }
 
-exports.delete = (req, res) => {
-    
+exports.drop = (req, res) => {
+    Group.findOneAndRemove({_id: req.params.id}).then(data => {
+        res.json(data);
+    });
 }
