@@ -33,17 +33,11 @@ exports.init = (app) => {
     });
 
     //Action de l'api sur les reviews
-    app.get('/api/review', (req, res) => {
+    app.get('/api/reviews', (req, res) => {
         review_controller.index(req, res);
     });
-    app.post('/api/review', (req, res) => {
+    app.post('/api/reviews', (req, res) => {
         review_controller.create(req, res);
-    });
-    app.put('/api/review', (req, res) => {
-        review_controller.update(req, res);
-    });
-    app.delete('/api/review', (req, res) => {
-        review_controller.drop(req, res);
     });
 
 }

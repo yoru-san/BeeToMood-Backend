@@ -7,13 +7,23 @@ exports.index = (req, res) => {
 }
 
 exports.create = (req, res) => {
+    var group = new Group;
+    group.name = req.body.name;
+    group.nextNotificationDate = req.body.mailDate;    
 
+    group.save().then(data => {
+        res.json(data);
+    });
 }
 
-exports.put = (req, res) => {
-    
+exports.update = (req, res) => {
+    Group.findOneAndUpdate({_id: req.query._id}, { name: req.body.name, nextNotificationDate: req.body.mailDate }, {new: true}).then(data => {
+        res.json(data);
+    });
 }
 
-exports.delete = (req, res) => {
-    
+exports.drop = (req, res) => {
+    Group.findOneAndRemove({_id: req.query._id}).then(data => {
+        res.json(data);
+    });
 }
