@@ -7,6 +7,7 @@ exports.index = (req, res) => {
 }
 
 exports.create = (req, res) => {
+
     var group = new Group;
     group.name = req.body.name;
     group.nextNotificationDate = req.body.mailDate;    
