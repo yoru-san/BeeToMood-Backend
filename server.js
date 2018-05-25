@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var mongoose = require('mongoose');
+var cors = require('cors');
 var routes = require('./routes.js');
 
 mongoose.connect('mongodb://localhost/beetomood');
@@ -11,6 +12,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.json()); 
 app.use(express.static(__dirname + '/public'));
+app.use(cors());
 
 routes.init(app);
 
