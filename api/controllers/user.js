@@ -8,11 +8,10 @@ exports.index = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    var password = sha256(req.body.password);
     var newUser = new User;
     newUser.name = req.body.name;
     newUser.surname = req.body.surname; 
-    newUser.password = password;   
+    newUser.password = req.body.password;   
     newUser.email = req.body.email;
     newUser.type = req.body.type;
 
@@ -29,9 +28,23 @@ exports.update = (req, res) => {
     });
 }
 
+exports.updatePassword = (req, res) => {
+    User.findOneAndUpdate({ _id: req.body._id }, { $set: { password: req.body.password } }, {new: true}).then(data => {
+        res.json(data);
+    });
+}
+
 exports.drop = (req, res) => {
     console.log(req.query);
     User.findOneAndRemove({_id: req.query._id}).then(data => {
         res.json(data);
     });
+}
+
+exports.connect = (req, res) => {
+    console.log(req.body.email);
+    console.log(req.body.password);    
+    User.findOne({email: req.body.email, password: req.body.password}).then(data =>{
+        res.json(data);
+    })
 }

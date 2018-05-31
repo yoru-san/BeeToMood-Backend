@@ -14,8 +14,16 @@ exports.init = (app) => {
     app.put('/api/users', (req, res) => {
         user_controller.update(req, res);
     });
+    app.patch("/api/users", (req, res) => {
+        user_controller.updatePassword(req, res);
+    });
     app.delete('/api/users', (req, res) => {
         user_controller.drop(req, res);
+    });
+
+    //Action de l'api sur la connexion des utilisateurs
+    app.post('/api/connexion', (req, res) => {
+        user_controller.connect(req, res);
     });
 
     //Action de l'api sur les groupes
@@ -39,5 +47,7 @@ exports.init = (app) => {
     app.post('/api/reviews', (req, res) => {
         review_controller.create(req, res);
     });
+
+
 
 }
