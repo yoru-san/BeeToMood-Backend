@@ -36,7 +36,7 @@ exports.init = (app) => {
     app.put('/api/groups', (req, res) => {
         group_controller.update(req, res);
     });
-    app.delete('/api/groups', (req, res) => {
+    app.delete('/api/groups/:id', (req, res) => {
         group_controller.drop(req, res);
     });
 

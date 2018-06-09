@@ -24,7 +24,8 @@ exports.update = (req, res) => {
 }
 
 exports.drop = (req, res) => {
-    Group.findOneAndRemove({_id: req.query._id}).then(data => {
+    console.log(req.params)
+    Group.findOneAndRemove({_id: req.params.id}).then(data => {
         res.json(data);
     });
 }
