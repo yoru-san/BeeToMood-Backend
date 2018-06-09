@@ -35,15 +35,13 @@ exports.updatePassword = (req, res) => {
 }
 
 exports.drop = (req, res) => {
-    console.log(req.query);
-    User.findOneAndRemove({_id: req.query._id}).then(data => {
+    console.log(req.params)
+    User.findOneAndRemove({_id: req.params.id}).then(data => {
         res.json(data);
     });
 }
 
-exports.connect = (req, res) => {
-    console.log(req.body.email);
-    console.log(req.body.password);    
+exports.connect = (req, res) => {  
     User.findOne({email: req.body.email, password: req.body.password}).then(data =>{
         res.json(data);
     })

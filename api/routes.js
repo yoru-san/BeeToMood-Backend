@@ -17,7 +17,7 @@ exports.init = (app) => {
     app.patch("/api/users", (req, res) => {
         user_controller.updatePassword(req, res);
     });
-    app.delete('/api/users', (req, res) => {
+    app.delete('/api/users/:id', (req, res) => {
         user_controller.drop(req, res);
     });
 
