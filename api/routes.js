@@ -14,7 +14,7 @@ exports.init = (app) => {
     app.put('/api/users', (req, res) => {
         user_controller.update(req, res);
     });
-    app.patch("/api/users", (req, res) => {
+    app.patch("/api/users/:id", (req, res) => {
         user_controller.updatePassword(req, res);
     });
     app.delete('/api/users/:id', (req, res) => {

@@ -20,22 +20,19 @@ exports.create = (req, res) => {
     });
 }
 
-exports.update = (req, res) => {
-    console.log(req.body);
-    console.log(req.query._id);    
-    User.findOneAndUpdate({_id: req.query._id}, {name: req.body.name, surname: req.body.surname, password: req.body.password, email: req.body.email, type: req.body.type}, {new: true}).then(data => {
+exports.update = (req, res) => {   
+    User.findOneAndUpdate({_id: req.params.id}, {name: req.body.name, surname: req.body.surname, password: req.body.password, email: req.body.email, type: req.body.type}, {new: true}).then(data => {
         res.json(data);        
     });
 }
 
-exports.updatePassword = (req, res) => {
-    User.findOneAndUpdate({ _id: req.body._id }, { $set: { password: req.body.password } }, {new: true}).then(data => {
+exports.updatePassword = (req, res) => { 
+    User.findOneAndUpdate({ _id: req.params.id }, { $set: { password: req.body.password } }, {new: true}).then(data => {
         res.json(data);
     });
 }
 
 exports.drop = (req, res) => {
-    console.log(req.params)
     User.findOneAndRemove({_id: req.params.id}).then(data => {
         res.json(data);
     });
