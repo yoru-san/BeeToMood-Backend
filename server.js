@@ -3,6 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var cors = require('cors');
 var routes = require('./routes.js');
+var nodemailer = require('nodemailer');
 
 mongoose.connect('mongodb://localhost/beetomood');
 

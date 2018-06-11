@@ -18,14 +18,23 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    Group.findOneAndUpdate({_id: req.query._id}, { name: req.body.name, nextNotificationDate: req.body.mailDate }, {new: true}).then(data => {
+    Group.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).then(data => {
         res.json(data);
     });
 }
 
 exports.drop = (req, res) => {
-    console.log(req.params)
     Group.findOneAndRemove({_id: req.params.id}).then(data => {
         res.json(data);
     });
+}
+
+exports.sendMail = (req, res) => {
+    var message = {
+        from: 'beetomood@gmail.com',
+        to: 'receiver@sender.com',
+        subject: 'Votre mood de la journée',
+        text: 'Bonjour, Veuillez vous connecter à Bee-To-Mood pour renseigner votre mood de la journée.',
+        //date:,
+    };
 }

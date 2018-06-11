@@ -33,7 +33,7 @@ exports.init = (app) => {
     app.post('/api/groups', (req, res) => {
         group_controller.create(req, res);
     });
-    app.put('/api/groups', (req, res) => {
+    app.put('/api/groups/:id', (req, res) => {
         group_controller.update(req, res);
     });
     app.delete('/api/groups/:id', (req, res) => {
