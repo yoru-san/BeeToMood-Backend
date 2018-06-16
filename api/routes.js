@@ -30,6 +30,9 @@ exports.init = (app) => {
     app.get('/api/groups', (req, res) => {
         group_controller.index(req, res);
     });
+    app.get('/api/groups/:id', (req, res) => {
+        group_controller.show(req, res);
+    });
     app.post('/api/groups', (req, res) => {
         group_controller.create(req, res);
     });

@@ -1,7 +1,13 @@
 var Group = require('../models/group').Group;
 
-exports.index = (req, res) => {
+exports.index = (_, res) => {
     Group.find().then(data => {
+        res.json(data);
+    });
+}
+
+exports.show = (req, res) => {
+    Group.findById(req.params.id).then(data => {
         res.json(data);
     });
 }
@@ -18,6 +24,9 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
+
+    req.body.nextNotificationDate = req.body.mailDate.hour + ':' + req.body.mailDate.minute; 
+
     Group.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).then(data => {
         res.json(data);
     });

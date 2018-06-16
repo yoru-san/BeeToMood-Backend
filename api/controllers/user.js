@@ -13,6 +13,7 @@ exports.create = (req, res) => {
     newUser.surname = req.body.surname; 
     newUser.password = req.body.password;   
     newUser.email = req.body.email;
+    newUser.groups = req.body.groups;
     newUser.type = req.body.type;
 
     newUser.save().then(data => {
