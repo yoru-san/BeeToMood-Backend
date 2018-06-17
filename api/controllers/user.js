@@ -1,8 +1,13 @@
 var User = require('../models/user').User;
-var sha256 = require("sha256");
 
-exports.index = (req, res) => {
+exports.index = (_, res) => {
     User.find().then(data => {
+        res.json(data);
+    });
+}
+
+exports.show = (req, res) => {
+    User.findById(req.params.id).then(data => {
         res.json(data);
     });
 }

@@ -8,10 +8,13 @@ exports.init = (app) => {
     app.get('/api/users', (req, res) => {
         user_controller.index(req, res);
     });
+    app.get('/api/users/:id', (req, res) => {
+        user_controller.show(req, res);
+    });
     app.post('/api/users', (req, res) => {
         user_controller.create(req, res);
     });
-    app.put('/api/users', (req, res) => {
+    app.put('/api/users/:id', (req, res) => {
         user_controller.update(req, res);
     });
     app.patch("/api/users/:id", (req, res) => {

@@ -38,12 +38,12 @@ exports.drop = (req, res) => {
     });
 }
 
-exports.sendMail = (req, res) => {
-    var message = {
-        from: 'beetomood@gmail.com',
-        to: 'receiver@sender.com',
-        subject: 'Votre mood de la journée',
-        text: 'Bonjour, Veuillez vous connecter à Bee-To-Mood pour renseigner votre mood de la journée.',
-        //date:,
-    };
-}
+// exports.sendMail = (req, res) => {
+//     var message = {
+//         from: 'beetomood@gmail.com',
+//         to: 'receiver@sender.com',
+//         subject: 'Votre mood de la journée',
+//         text: 'Bonjour, Veuillez vous connecter à Bee-To-Mood pour renseigner votre mood de la journée.',
+//         //date:,
+//     };
+// }
