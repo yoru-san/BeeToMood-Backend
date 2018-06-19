@@ -7,5 +7,6 @@ exports.User = mongoose.model('User', {
     email: { type: String, required: true },
     password: { type: String, required: true },  
     groups: [{ type: ObjectId, ref: 'Group' }],  
-    type : { type: String, required: true }
+    type: { type: String, required: true },
+    firstConnection: {type: Boolean, required: true }
 });

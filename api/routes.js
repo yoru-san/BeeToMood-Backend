@@ -29,6 +29,10 @@ exports.init = (app) => {
         user_controller.connect(req, res);
     });
 
+    app.patch('/api/connexion/:id', (req, res) => {
+        user_controller.changeStatus(req, res);
+    });
+
     //Action de l'api sur les groupes
     app.get('/api/groups', (req, res) => {
         group_controller.index(req, res);

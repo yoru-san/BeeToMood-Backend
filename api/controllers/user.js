@@ -20,6 +20,7 @@ exports.create = (req, res) => {
     newUser.email = req.body.email;
     newUser.groups = req.body.groups;
     newUser.type = req.body.type;
+    newUser.firstConnection = false;
 
     newUser.save().then(data => {
         res.json(data);
@@ -48,4 +49,10 @@ exports.connect = (req, res) => {
     User.findOne({email: req.body.email, password: req.body.password}).then(data =>{
         res.json(data);
     })
+}
+
+exports.changeStatus = (req, res) => {
+    User.findOneAndUpdate({ _id: req.params.id }, { $set: { firstConnection: req.body.firstConnection } }, {new: true}).then(data => {
+        res.json(data);
+    });
 }
