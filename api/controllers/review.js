@@ -1,8 +1,7 @@
 var Review = require('../models/review').Review;
 
 exports.index = (req, res) => {
-    Review.find(req.query).then(data => {
-        console.log(data.group)
+    Review.find({userId: req.params.id}).then(data => {
         res.json(data);
     });
 }

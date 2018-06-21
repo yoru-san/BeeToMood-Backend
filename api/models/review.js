@@ -5,5 +5,5 @@ exports.Review = mongoose.model('Review', {
     group: {type: String, required: true },
     mood: { type: String, required: true },
     comment: { type: String }, 
-    date: { type: Date }      
+    date: { type: String }      
 });

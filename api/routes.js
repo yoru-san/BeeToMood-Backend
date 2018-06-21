@@ -51,9 +51,10 @@ exports.init = (app) => {
     });
 
     //Action de l'api sur les reviews
-    app.get('/api/reviews', (req, res) => {
+    app.get('/api/reviews/:id', (req, res) => {
         review_controller.index(req, res);
     });
+
     app.post('/api/reviews', (req, res) => {
         review_controller.create(req, res);
     });
