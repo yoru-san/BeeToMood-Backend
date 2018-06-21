@@ -55,6 +55,11 @@ exports.init = (app) => {
         review_controller.index(req, res);
     });
 
+    app.get('/api/reviews', (req, res) => {
+        review_controller.show(req, res);
+    });
+
+
     app.post('/api/reviews', (req, res) => {
         review_controller.create(req, res);
     });

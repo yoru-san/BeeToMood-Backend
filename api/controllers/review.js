@@ -6,6 +6,14 @@ exports.index = (req, res) => {
     });
 }
 
+exports.show = (req, res) => {
+    console.log(req.query)
+    Review.find(req.query).then(data => {
+        console.log(data)
+        res.json(data);
+    })
+}
+
 exports.create = (req, res) => {
     console.log(req.body)
     var review  = new Review;
