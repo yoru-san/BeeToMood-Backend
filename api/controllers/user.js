@@ -1,7 +1,7 @@
 var User = require('../models/user').User;
 
 exports.index = (_, res) => {
-    User.find().then(data => {
+    User.find().populate('groups').then(data => {
         res.json(data);
     });
 }
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {   
-    User.findOneAndUpdate({_id: req.params.id}, {name: req.body.name, surname: req.body.surname, password: req.body.password, email: req.body.email, type: req.body.type}, {new: true}).then(data => {
+    User.findOneAndUpdate({_id: req.params.id}, {name: req.body.name, surname: req.body.surname, password: req.body.password, email: req.body.email, groups: req.body.groups, type: req.body.type}, {new: true}).then(data => {
         res.json(data);        
     });
 }
