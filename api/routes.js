@@ -65,5 +65,7 @@ exports.init = (app) => {
     });
 
 
-
+    app.get('/api/testmail', (req, res) => {
+        group_controller.sendMailToUser(req, res);
+    });
 }
