@@ -1,4 +1,5 @@
 var CronJob = require('cron').CronJob;
+var nodeMailer = require('nodemailer');
 var Group = require('../models/group').Group;
 var User = require('../models/user').User;
 
@@ -40,7 +41,7 @@ exports.drop = (req, res) => {
     });
 }
 
-exports.sendMail = (req, res) => {
+exports.sendMail = (_, _) => {
     var job = new CronJob({
         cronTime: '0 * * * * 1-5',
         onTick: exports.sendMailToUser,
@@ -50,27 +51,46 @@ exports.sendMail = (req, res) => {
     job.start();
 }
 
-exports.sendMailToUser = async (_, res) => {
+exports.sendMailToUser = async (_, _) => {
     let groups = await Group.find();
-
-    console.log("Salut");
-    
+        
     for (let i = 0; i < groups.length; i++) {
         const group = groups[i];
-     
+        
         let now = new Date();
         let hour = +group.nextNotificationDate.split(':')[0];
         let minute = +group.nextNotificationDate.split(':')[1];
         
-        // if (now.getHours() === hour && now.getMinutes() === minute) {
-        if (group._id.toString() === "5b2d4d9e88c5b14b002ac9ab") {
+        if (now.getHours() === hour && now.getMinutes() === minute) {
+            let userEmails = []
             let users = await User.find({'groups': group._id.toString()});
             
-            console.log("GOOOOOOOOOO");
-            console.log(users);
-            // Send mail
+            users.forEach(user => {
+                userEmails.push(user.email);
+            });
+            
+            let transporter = nodeMailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'beetomood@gmail.com',
+                    pass: 'Passw0rd$'
+                }
+            });
+            let mailOptions = {
+                from: '"Test BeeToMood" <beetomood@gmail.com>',
+                to: userEmails,
+                subject: "Réclamation de review", 
+                text: "Veuillez vous connecter à Bee-To-Mood pour laisser votre review d'aujourd'hui.", 
+                html: "<p>Veuillez vous connecter à Bee-To-Mood pour laisser votre review d'aujourd'hui.</p>"
+            };
+            
+            transporter.sendMail(mailOptions, (error, _) => {
+                if (error) {
+                    return console.log(error);
+                }   
+            });
         }
     }
-
-    res.json("Ok");
 }

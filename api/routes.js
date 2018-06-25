@@ -64,8 +64,4 @@ exports.init = (app) => {
         review_controller.create(req, res);
     });
 
-
-    app.get('/api/testmail', (req, res) => {
-        group_controller.sendMailToUser(req, res);
-    });
 }
