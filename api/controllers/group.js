@@ -3,8 +3,8 @@ var nodeMailer = require('nodemailer');
 var Group = require('../models/group').Group;
 var User = require('../models/user').User;
 
-exports.index = (_, res) => {
-    Group.find().then(data => {
+exports.index = (req, res) => {
+    Group.find(req.query).then(data => {
         res.json(data);
     });
 }
