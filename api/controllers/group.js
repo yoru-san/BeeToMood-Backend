@@ -19,7 +19,8 @@ exports.create = (req, res) => {
     
     var group = new Group;
     group.name = req.body.name;
-    group.nextNotificationDate = req.body.mailDate;    
+    group.nextNotificationDate = req.body.mailDate;
+    group.managerId = req.body.managerId;   
     
     group.save().then(data => {
         res.json(data);
@@ -41,17 +42,17 @@ exports.drop = (req, res) => {
     });
 }
 
-exports.sendMail = (_, _) => {
+exports.sendMail = (_) => {
     var job = new CronJob({
         cronTime: '0 * * * * 1-5',
         onTick: exports.sendMailToUser,
-        start: false,
+        start: true,
         timeZone: 'America/Los_Angeles'
     });
     job.start();
 }
 
-exports.sendMailToUser = async (_, _) => {
+exports.sendMailToUser = async (_) => {
     let groups = await Group.find();
         
     for (let i = 0; i < groups.length; i++) {
