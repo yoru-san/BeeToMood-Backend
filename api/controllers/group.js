@@ -42,7 +42,7 @@ exports.drop = (req, res) => {
     });
 }
 
-exports.sendMail = (_) => {
+exports.findMailHour = (_) => {
     var job = new CronJob({
         cronTime: '0 * * * * 1-5',
         onTick: exports.sendMailToUser,

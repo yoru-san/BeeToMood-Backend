@@ -7,7 +7,7 @@ exports.index = (_, res) => {
 }
 
 exports.show = (req, res) => {
-    User.findById(req.params.id).then(data => {
+    User.findById(req.params.id).populate('groups').then(data => {
         res.json(data);
     });
 }
