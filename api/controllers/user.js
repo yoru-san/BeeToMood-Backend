@@ -28,13 +28,17 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {   
-    User.findOneAndUpdate({_id: req.params.id}, {name: req.body.name, surname: req.body.surname, password: req.body.password, email: req.body.email, groups: req.body.groups, type: req.body.type}, {new: true}).then(data => {
+    User.findOneAndUpdate(req.params, {name: req.body.name, surname: req.body.surname, password: req.body.password, email: req.body.email, groups: req.body.groups, type: req.body.type}, {new: true}).then(data => {
         res.json(data);        
     });
 }
 
-exports.updatePassword = (req, res) => { 
+exports.updatePassword = (req, res) => {
+    console.log("in change le mdp")
+    console.log(req.body)
+    console.log(req.params) 
     User.findOneAndUpdate({ _id: req.params.id }, { $set: { password: req.body.password } }, {new: true}).then(data => {
+        console.log(data)
         res.json(data);
     });
 }
